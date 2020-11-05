@@ -131,33 +131,33 @@ class ClassLoaderTest {
 
 ## 3. 标注以下启动参数每个参数的含义  
 java   
--Denv=PRO  > 指定 Spring Boot profile 环境 PRO
--server  > 服务端模式
--Xms4g  > 设置jvm堆内存最小为4g
--Xmx4g  > 设置jvm堆内存最大为4g
--Xmn2g  > 设置年轻代 (新生代) jvm堆内存为2g
--XX:MaxDirectMemorySize=512m  > 设置jvm堆外内存大小为512M 
--XX:MetaspaceSize=128m  > 设置jvm元数据区空间128M,到Java8时, Metaspace(元数据区) 取代 PermGen space(永久代), 用来存放class信息  
--XX:MaxMetaspaceSize=512m  > 设置jvm元数据区最大空间512M  
--XX:-UseBiasedLocking  > 关闭偏向锁  
--XX:-UseCounterDecay  > 禁止JIT调用计数器衰减  
--XX:AutoBoxCacheMax=10240  > 设置jvm自动装箱的最大范围10240  
--XX:+UseConcMarkSweepGC  > 设置jvm老年代使用CMS收集器  
--XX:CMSInitiatingOccupancyFraction=75  > 计算老年代最大使用率，使用cms作为垃圾回收，使用75％后开始CMS收集  
--XX:+UseCMSInitiatingOccupancyOnly  > 设置CMS收集仅在内存占用率达到时再触发  
--XX:MaxTenuringThreshold=6  > 设置对象在新生代中最大的存活次数为6就晋升到老生代  
--XX:+ExplicitGCInvokesConcurrent  > 使用System.gc()时触发CMS GC，而不是Full GC  
--XX:+ParallelRefProcEnabled  > 默认为false，并行的处理Reference对象，如WeakReference，除非在GC log里出现Reference处理时间较长的日志，否则效果不会很明显。  
--XX:+PerfDisableSharedMem  > 禁止写统计文件  
--XX:+AlwaysPreTouch  > JAVA进程启动的时候,虽然我们可以为JVM指定合适的内存大小,但是这些内存操作系统并没有真正的分配给JVM,而是等JVM访问这些内存的时候,才真正分配；通过配置这个参数JVM就会先访问所有分配给它的内存,让操作系统把内存真正的分配给JVM.从而提高运行时的性能，后续JVM就可以更好的访问内存了；  
--XX:-OmitStackTraceInFastThrow   > 强制要求JVM始终抛出含堆栈的异常  
--XX:+ExplicitGCInvokesConcurrent  > 命令JVM无论什么时候调用系统GC，都执行CMS GC，而不是Full GC  
--XX:+HeapDumpOnOutOfMemoryError   > 当堆内存空间溢出时输出堆的内存快照。  
--XX:HeapDumpPath=/home/devjava/logs/  > 设置堆内存空间溢出是内存快照保存路径  
--Xloggc:/home/devjava/logs/lifecircle-tradecore-gc.log  > 将gc垃圾回收信息输出到指定文件  
--XX:+PrintGCApplicationStoppedTime  > 打印gc垃圾回收期间程序暂停的时间  
--XX:+PrintGCDateStamps  > 打印GC执行的时间戳 
--XX:+PrintGCDetails  > 打印GC日志详情  
--javaagent:/home/devjava/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar  > 加载arms的包  
--jar /home/devjava/lifecircle-tradecore/app/lifecircle-tradecore.jar  > 指定要启动的项目jar包   
+-Denv=PRO `指定 Spring Boot profile 环境 PRO`    
+-server `服务端模式`    
+-Xms4g `设置jvm堆内存最小为4g`    
+-Xmx4g `设置jvm堆内存最大为4g`    
+-Xmn2g `设置年轻代 (新生代) jvm堆内存为2g`    
+-XX:MaxDirectMemorySize=512m `设置jvm堆外内存大小为512M`     
+-XX:MetaspaceSize=128m `设置jvm元数据区空间128M,到Java8时, Metaspace(元数据区) 取代 PermGen space(永久代), 用来存放class信息`      
+-XX:MaxMetaspaceSize=512m `设置jvm元数据区最大空间512M`      
+-XX:-UseBiasedLocking `关闭偏向锁`      
+-XX:-UseCounterDecay `禁止JIT调用计数器衰减`      
+-XX:AutoBoxCacheMax=10240 `设置jvm自动装箱的最大范围10240`      
+-XX:+UseConcMarkSweepGC `设置jvm老年代使用CMS收集器`      
+-XX:CMSInitiatingOccupancyFraction=75 `计算老年代最大使用率，使用cms作为垃圾回收，使用75％后开始CMS收集`      
+-XX:+UseCMSInitiatingOccupancyOnly `设置CMS收集仅在内存占用率达到时再触发`      
+-XX:MaxTenuringThreshold=6 `设置对象在新生代中最大的存活次数为6就晋升到老生代`      
+-XX:+ExplicitGCInvokesConcurrent `使用System.gc()时触发CMS GC，而不是Full GC`      
+-XX:+ParallelRefProcEnabled `默认为false，并行的处理Reference对象，如WeakReference，除非在GC log里出现Reference处理时间较长的日志，否则效果不会很明显。`      
+-XX:+PerfDisableSharedMem `禁止写统计文件`      
+-XX:+AlwaysPreTouch `JAVA进程启动的时候,虽然我们可以为JVM指定合适的内存大小,但是这些内存操作系统并没有真正的分配给JVM,而是等JVM访问这些内存的时候,才真正分配；通过配置这个参数JVM就会先访问所有分配给它的内存,让操作系统把内存真正的分配给JVM.从而提高运行时的性能，后续JVM就可以更好的访问内存了；`      
+-XX:-OmitStackTraceInFastThrow  `强制要求JVM始终抛出含堆栈的异常`      
+-XX:+ExplicitGCInvokesConcurrent `命令JVM无论什么时候调用系统GC，都执行CMS GC，而不是Full GC`      
+-XX:+HeapDumpOnOutOfMemoryError  `当堆内存空间溢出时输出堆的内存快照。`      
+-XX:HeapDumpPath=/home/devjava/logs/ `设置堆内存空间溢出是内存快照保存路径 `     
+-Xloggc:/home/devjava/logs/lifecircle-tradecore-gc.log `将gc垃圾回收信息输出到指定文件`      
+-XX:+PrintGCApplicationStoppedTime `打印gc垃圾回收期间程序暂停的时间`      
+-XX:+PrintGCDateStamps `打印GC执行的时间戳`     
+-XX:+PrintGCDetails `打印GC日志详情`      
+-javaagent:/home/devjava/ArmsAgent/arms-bootstrap-1.7.0-SNAPSHOT.jar `加载arms的包`      
+-jar /home/devjava/lifecircle-tradecore/app/lifecircle-tradecore.jar `指定要启动的项目jar包`   
   
